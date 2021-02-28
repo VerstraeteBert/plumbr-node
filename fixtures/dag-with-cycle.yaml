@@ -1,0 +1,11 @@
+name: dag-with-cycle
+steps:
+  - kind: source
+    name: A
+    connectsTo: B
+  - kind: processor
+    name: B
+    connectsTo: C
+  - kind: processor
+    name: C
+    connectsTo: B

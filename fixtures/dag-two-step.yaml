@@ -1,0 +1,19 @@
+name: two-step-test
+steps:
+  - kind: source
+    name: kafka-ingress-0
+    connectsTo: transformer-0
+  - kind: processor
+    name: transformer-0
+    connectsTo: transformer-1
+    env:
+      - name: MSG
+        value: "hello from transformer-0"
+  - kind: processor
+    name: transformer-1
+    connectsTo: kafka-egress-0
+    env:
+      - name: MSG
+        value: "hello from transformer-1"
+  - kind: sink
+    name: kafka-egress-0

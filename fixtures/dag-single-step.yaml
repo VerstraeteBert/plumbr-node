@@ -1,0 +1,13 @@
+name: simple-transform-test
+steps:
+  - kind: source
+    name: kafka-ingress-0
+    connectsTo: transformer
+  - kind: processor
+    name: transformer
+    connectsTo: kafka-egress-0
+    env:
+      - name: msg
+        value: "hello from transformer"
+  - kind: sink
+    name: kafka-egress-0
