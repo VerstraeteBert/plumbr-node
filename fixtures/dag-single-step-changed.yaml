@@ -4,10 +4,16 @@ steps:
     name: kafka-ingress-0
     connectsTo: transformer
   - kind: processor
-    name: transformer
+    name: transformer-0
+    connectsTo: kafka-egress-1
+    env:
+      - name: MSG
+        value: "hello from transformer-0"
+  - kind: processor
+    name: transformer-1
     connectsTo: kafka-egress-0
     env:
       - name: MSG
-        value: "hello from transformer"
+        value: "hello from transformer-1"
   - kind: sink
     name: kafka-egress-0
